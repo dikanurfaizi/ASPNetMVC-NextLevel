@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static ASPNetMVC.FilterConfig;
 
 namespace ASPNetMVC.Controllers
 {
@@ -15,9 +16,9 @@ namespace ASPNetMVC.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            if (Session["Email"] != null && Session["Password"] != null)
+            if (Session["Id"] != null)
             {
-                return View(myContext.Employees.ToList());
+                return RedirectToAction("Edit", "Employees", new { Id = Session["Id"] });
             }
             else
             {
@@ -47,9 +48,16 @@ namespace ASPNetMVC.Controllers
 
         public ActionResult Edit(int Id)
         {
-            List<Division> list = myContext.Divisions.ToList();
-            ViewBag.DivisionList = new SelectList(list, "Id", "Name");
-            return View(myContext.Employees.Find(Id));
+            if (Session["Id"] != null)
+            {
+                List<Division> list = myContext.Divisions.ToList();
+                ViewBag.DivisionList = new SelectList(list, "Id", "Name");
+                return View(myContext.Employees.Find(Id));
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         [HttpPost]

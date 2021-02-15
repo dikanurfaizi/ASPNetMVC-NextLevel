@@ -81,3 +81,4 @@ C:\Users\Acer\source\repos\ASPNetMVC\ASPNetMVC\obj\Debug\ASPNetMVC.dll
 C:\Users\Acer\source\repos\ASPNetMVC\ASPNetMVC\obj\Debug\ASPNetMVC.pdb
 C:\Users\Acer\source\repos\ASPNetMVC\ASPNetMVC\obj\Debug\ASPNetMVC.Migrations.CreateTableFirst.resources
 C:\Users\Acer\source\repos\ASPNetMVC\ASPNetMVC\obj\Debug\ASPNetMVC.csproj.GenerateResource.cache
+C:\Users\Acer\source\repos\ASPNetMVC\ASPNetMVC\obj\Debug\ASPNetMVC.csprojAssemblyReference.cache

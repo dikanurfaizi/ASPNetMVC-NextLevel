@@ -16,13 +16,13 @@ namespace ASPNetMVC.Controllers
 
         public ActionResult Index()
         {
-            if (Session["Email"] != null)
+            if (Session["Id"] != null)
             {
                 return View(myContext.Divisions.ToList());
             }
             else
             {
-                return RedirectToAction("Login", "Accounts", new { area = "" });
+                return RedirectToAction("Login", "Accounts");
             }
         }
 

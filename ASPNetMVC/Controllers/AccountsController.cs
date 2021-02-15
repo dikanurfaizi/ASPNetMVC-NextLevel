@@ -16,9 +16,9 @@ namespace ASPNetMVC.Controllers
         // GET: Accounts
         public ActionResult Index()
         {
-            if (Session["Email"] != null)
+            if (Session["Id"] != null)
             {
-                return RedirectToAction("Index", "Home", new { area = "" });
+                return RedirectToAction("Index", "Employees", new { Id = Session["Id"] });
             }
             else
             {
@@ -88,9 +88,12 @@ namespace ASPNetMVC.Controllers
                 if (mySign != null)
                 {
                     //add session
-                    Session["Email"] = mySign.EmpEmail.ToString();
+                    Session["SignIn"] = loginModel.EmailEmployee.ToString();
                     Session["Password"] = mySign.AccPassword.ToString();
-                    return RedirectToAction("Edit", "Employee");
+                    var dEmployees = myContext.Employees.Where(e => e.Email == loginModel.EmailEmployee || e.Phone == loginModel.EmailEmployee).ToList();
+                    Session["Id"] = dEmployees.FirstOrDefault().Id;
+                    int logSignIn = Convert.ToInt32(Session["Id"]);
+                    return RedirectToAction("Index", "Employees");
                 }
                 else
                 {
@@ -167,7 +170,9 @@ namespace ASPNetMVC.Controllers
         //Logout
         public ActionResult Logout()
         {
-            Session.Remove("Email");
+            Session["Id"] = null;
+            Session.Remove("Id");
+            Session.Clear();
             return RedirectToAction("Login");
         }
 
